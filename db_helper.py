@@ -1,12 +1,34 @@
 import sqlite3
 
 class DBHelper:
+    """
+    A database helper class to add, retrieve, update, and delete customers from an SQLite database.
+    
+    Parameters:
+        db_file (str): the database file to be connected to.
 
+    Attributes:
+        conn (obj): sqlite3 connection object to the database.
+    """
     def __init__(self,db_file):
-       self.conn = sqlite3.connect(db_file)
+        """
+        Connects to the database file.
+        
+        :param db_file: the name of the database file
+        """
+        self.conn = sqlite3.connect(db_file)
 
 
     def add_user(self,first, last, email, DOB, phone):
+        """
+        Add a new customer record to the customers table in the database.
+        
+        :param first: first name of the customer
+        :param last: last name of the customer
+        :param email: email address of the customer
+        :param DOB: date of birth of the customer
+        :param phone: phone number of the customer
+        """
         cur = self.conn.cursor()
         cur.execute('''
                     CREATE TABLE IF NOT EXISTS customers (
@@ -24,6 +46,12 @@ class DBHelper:
 
  
     def get_user(self, email):
+        """
+        Retrieve customer data from the customers table in the database.
+        
+        :param email: email address of the customer (required)
+        :return: a tuple with customer data if customer with email exists.
+        """
         cur = self.conn.cursor()
         if email:
             cur.execute('''
@@ -54,6 +82,16 @@ customer with '{email}' has the following data:
 
     
     def update_user(self, old_email, email, first, last, DOB, phone):
+        """
+        Update customer data in the customers table in the database.
+        
+        :param old_email: the original email address of the customer
+        :param email: the new email address of the customer
+        :param first: the new first name of the customer
+        :param last: the new last name of the customer
+        :param DOB: the new date of birth of the customer
+        :param phone: the new phone number of the customer
+        """
         cur = self.conn.cursor()
         cur.execute('''
         UPDATE customers
@@ -65,6 +103,11 @@ customer with '{email}' has the following data:
 
 
     def delete_user(self, email):
+        """
+        Delete customer data from the customers table in the database.
+        
+        :param email: email address of the customer
+        """
         cur = self.conn.cursor()
         cur.execute('''
             DELETE FROM customers
@@ -77,9 +120,15 @@ customer with '{email}' has the following data:
             print(f"customer with Email address: '{email}' has been deleted.")
 
     def is_user_exists(self,old_email):
-            cur = self.conn.cursor()
-            cur.execute('''
-            SELECT email FROM customers
-            WHERE email=?
-        ''', (old_email,))
-            return cur.fetchone() != None
+        """
+        Check if customer with email address exists in the customers table in the database.
+        
+        :param old_email: email address of the customer
+        :return: True if customer exists, False otherwise.
+        """
+        cur = self.conn.cursor()
+        cur.execute('''
+        SELECT email FROM customers
+        WHERE email=?
+    ''', (old_email,))
+        return cur.fetchone() != None
