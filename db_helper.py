@@ -42,7 +42,7 @@ class DBHelper:
             INSERT INTO customers Values (:first, :last, :email, :DOB, :phone)
         ''', (first, last, email, DOB, phone))
         self.conn.commit()
-        print(f"cutomer {first} {last} has been added.")
+        print(f"[+] cutomer {first} {last} has been added.")
 
  
     def get_user(self, email):
@@ -61,14 +61,14 @@ class DBHelper:
             data = cur.fetchone()
             if data:
                 print(f'''\
-customer with '{email}' has the following data: 
+[+] customer with '{email}' has the following data: 
 [+] First Name: {data[0]}
 [+] Last Name: {data[1]}
 [+] Email Address: {data[2]}
 [+] Date Of Birth: {data[3]} 
 [+] Phone Number: {data[4]}''')
             else:
-                print(f"no customer with '{email}' was found in database.")
+                print(f"[+] no customer with '{email}' was found in database.")
         else:
             cur.execute('''
                 SELECT * FROM customers
@@ -99,7 +99,7 @@ customer with '{email}' has the following data:
         WHERE email=?
     ''', (email, first, last, DOB, phone, old_email))
         self.conn.commit()
-        print(f"customer with Email address: '{old_email}' has been updated.")
+        print(f"[+] customer with Email address: '{old_email}' has been updated.")
 
 
     def delete_user(self, email):
@@ -114,10 +114,10 @@ customer with '{email}' has the following data:
             WHERE email=?
         ''', (email,))
         if cur.rowcount == 0:
-            print(f"customer with Email address: '{email}' was not found in customers database.")
+            print(f"[+] customer with Email address: '{email}' was not found in customers database.")
         else:
             self.conn.commit()
-            print(f"customer with Email address: '{email}' has been deleted.")
+            print(f"[+] customer with Email address: '{email}' has been deleted.")
 
     def is_user_exists(self,old_email):
         """

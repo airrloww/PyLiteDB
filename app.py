@@ -29,23 +29,23 @@ def main():
             db.add_user(first, last, email, DOB, phone)
 
         elif choice == '2':
-            email = input("[+] Enter customer email address: ")
+            email = input("Enter customer email address: ")
             db.delete_user(email)
 
         elif choice == '3':
-            old_email = input("[+] Email address: ")
+            old_email = input("Email address: ")
             if not db.is_user_exists(old_email):
                 print(f"[+] customer with Email address: '{old_email}' was not found in data.")
             else:
-                email = input("[+] New Email address: ")
-                first = input("[+] Update First Name: ")
-                last = input("[+] Update Last Name: ")
-                DOB = input("[+] Update Date of Birth: ")
-                phone = input("[+] Update Phone Number: ")
+                email = input("New Email address: ")
+                first = input("Update First Name: ")
+                last = input("Update Last Name: ")
+                DOB = input("Update Date of Birth: ")
+                phone = input("Update Phone Number: ")
                 db.update_user(old_email, email, first, last, DOB, phone)
 
         elif choice == '4':
-            email = input("[+] Enter customer email address: ")
+            email = input("Enter customer email address: ")
             db.get_user(email)
 
         elif choice == '5':
