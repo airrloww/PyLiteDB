@@ -3,6 +3,7 @@
 
 PyLiteDB is a python library for SQLite databases. PyLiteDB library allows you to add, retrieve, update, and delete data from a table in a database.
 
+
 ## Requirements
 - python3
 - sqlite3
@@ -13,6 +14,7 @@ PyLiteDB is a python library for SQLite databases. PyLiteDB library allows you t
 ```bash
   pip install PyLiteDB
 ```
+
     
 ## Getting Started
 Clone the repository to your local machine and navigate to the directory.
@@ -21,6 +23,7 @@ Clone the repository to your local machine and navigate to the directory.
 git clone https://github.com/airrloww/PyLiteDB.git
 cd PyLiteDB
 ```
+
 
 ## Usage
 
