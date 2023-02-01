@@ -25,6 +25,21 @@ cd PyLiteDB
 ## Usage
 
 ```bash
-TBD
+python app.py
 
 ```
+
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  python -m unittest app_test.py
+```
+
+
+## License
+
+[MIT](https://github.com/airrloww/PyLiteDB/blob/main/LICENSE)
+
